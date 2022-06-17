@@ -4,30 +4,30 @@
 
 <br><br>
 
->#Docs
+> #Docs
 >
->##1) Implementation
->
+> ##1) Implementation
+> <br>
 >You need to copy the repo in your project directory
 >and add this script to the html body:
 >```
 >script src="graphJS/src/graphJS.js"></script>
 >```
->
+> <br>
 >Your project directory shoud look like these:
->
->Project direcotry
->    ├── graphJS-repo
->    │
->    ├── index.html
->    └── all your project things...
-
+>```
+>Project direcotry                  <br>
+>    ├── graphJS-repo               <br>
+>    │                              <br>
+>    ├── index.html                 <br>
+>    └── all your project things... <br>
+>```
 >If it doesn't look like that you can just change
 >the script src path, the important is to initialize
 >file graphJS/src/graphJS.js of the repository
->
->##2.1) Add a graph
-
+> <br><br>
+> ##2.1) Add a graph
+> <br>
 >With the "<graphJS>" html element you can add a graph
 >Here you have all the attribute you must use:
 >- height:     set the height [px, %]
@@ -40,12 +40,12 @@
 >- xLabel:     set the x axis label [string array]
 >- yLabel:     set the y axis label [string array]
 >- data:       set the data of the table [string array]
->
->##2.2) Graph type and specs
->
+> <br><br>
+> ##2.2) Graph type and specs
+> <br>
 >There are some type of graph:
->
->##3) Example
+> <br><br>
+> ##3) Example
 >
 > ```
 > <graphJS
