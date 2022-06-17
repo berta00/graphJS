@@ -4,17 +4,17 @@
 
 <br><br>
 
-> #Docs
+> # Docs
 >
-> ## 1) Implementation
+> ### 1) Implementation
 > <br>
->You need to copy the repo in your project directory
->and add this script to the html body:
+>You need to copy the repo in your project directory                 <br>
+>and add this script to the html body:                               <br>
 >```
 >script src="graphJS/src/graphJS.js"></script>
 >```
 > <br>
->Your project directory shoud look like these:
+>Your project directory shoud look like these:                       <br>
 > ```
 >Project direcotry                  <br>
 >    ├── graphJS-repo               <br>
@@ -22,30 +22,30 @@
 >    ├── index.html                 <br>
 >    └── all your project things... <br>
 > ```
->If it doesn't look like that you can just change
->the script src path, the important is to initialize
->file graphJS/src/graphJS.js of the repository
+>If it doesn't look like that you can just change                    <br>
+>the script src path, the important is to initialize                 <br>
+>file graphJS/src/graphJS.js of the repository                       <br>
 > <br><br>
-> ## 2.1) Add a graph
+> ### 2.1) Add a graph
 > <br>
->With the "<graphJS>" html element you can add a graph
->Here you have all the attribute you must use:
->- height:     set the height [px, %]
->- width:      set the width [px, %]
->- type:       there are some type of graph you can choose
->              (more info later)
->- background: set the background [hex code]
->- color1:     set the main color [hex code]
->- color2:     set the secondary color [hex code]
->- xLabel:     set the x axis label [string array]
->- yLabel:     set the y axis label [string array]
->- data:       set the data of the table [string array]
+>With the "<graphJS>" html element you can add a graph               <br>
+>Here you have all the attribute you must use:                       <br>
+>- height:     set the height [px, %]                                <br>
+>- width:      set the width [px, %]                                 <br>
+>- type:       there are some type of graph you can choose           <br>
+>              (more info later)                                     <br>
+>- background: set the background [hex code]                         <br>
+>- color1:     set the main color [hex code]                         <br>
+>- color2:     set the secondary color [hex code]                    <br>
+>- xLabel:     set the x axis label [string array]                   <br>
+>- yLabel:     set the y axis label [string array]                   <br>
+>- data:       set the data of the table [string array]              <br>
 > <br><br>
-> ## 2.2) Graph type and specs
+> ### 2.2) Graph type and specs
 > <br>
 >There are some type of graph:
 > <br><br>
-> ## 3) Example
+> ### 3) Example
 >
 > ```
 > <graphJS
