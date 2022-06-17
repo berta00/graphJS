@@ -3,14 +3,14 @@
 An open source library to create simple graphs in javascript (in develop)
 </h3>
 
-
+<br><br>
 
 <h2>Docs</h2>
+
 <h3>
-
 1) Implementation
-
 </h3>
+
 You need to copy the repo in your project directory
 and add this script to the html body:
 
@@ -29,12 +29,11 @@ If it doesn't look like that you can just change
 the script src path, the important is to initialize
 file graphJS/src/graphJS.js of the repository
 </h3>
-<h2>
 
-2.1) Add a graph
-
-</h2>
 <h3>
+2.1) Add a graph
+</h3>
+
 With the "<graphJS>" html element you can add a graph
 Here you have all the attribute you must use:
 - height:     set the height [px, %]
@@ -47,20 +46,17 @@ Here you have all the attribute you must use:
 - xLabel:     set the x axis label [string array]
 - yLabel:     set the y axis label [string array]
 - data:       set the data of the table [string array]
-</h3>
-<h2>
 
-2.2) Graph type and specs
-
-</h2>
 <h3>
-There are some type of graph:
+2.2) Graph type and specs
 </h3>
-<h2>
 
+There are some type of graph:
+
+<h3>
 3) Example
+</h3>
 
-</h2>
 ```
 <graphJS
     height= "200px"
