@@ -6,7 +6,7 @@
 
 > #Docs
 >
-> ##1) Implementation
+> ## 1) Implementation
 > <br>
 >You need to copy the repo in your project directory
 >and add this script to the html body:
@@ -15,18 +15,18 @@
 >```
 > <br>
 >Your project directory shoud look like these:
->```
+> ```
 >Project direcotry                  <br>
 >    ├── graphJS-repo               <br>
 >    │                              <br>
 >    ├── index.html                 <br>
 >    └── all your project things... <br>
->```
+> ```
 >If it doesn't look like that you can just change
 >the script src path, the important is to initialize
 >file graphJS/src/graphJS.js of the repository
 > <br><br>
-> ##2.1) Add a graph
+> ## 2.1) Add a graph
 > <br>
 >With the "<graphJS>" html element you can add a graph
 >Here you have all the attribute you must use:
@@ -41,11 +41,11 @@
 >- yLabel:     set the y axis label [string array]
 >- data:       set the data of the table [string array]
 > <br><br>
-> ##2.2) Graph type and specs
+> ## 2.2) Graph type and specs
 > <br>
 >There are some type of graph:
 > <br><br>
-> ##3) Example
+> ## 3) Example
 >
 > ```
 > <graphJS
