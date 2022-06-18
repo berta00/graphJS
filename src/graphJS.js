@@ -1,16 +1,21 @@
 class graphJS extends HTMLelement {
-    constructor (height, width, type, background, color1, color2, xLabel, yLabel, data){
-        this.getAttribute('height') = height
-        this.getAttribute('width') = width
-        this.getAttribute('type') = type
-        this.getAttribute('background') = background
-        this.getAttribute('color1') = color1
-        this.getAttribute('color2') = color2
-        this.getAttribute('xLabel') = xLabel
-        this.getAttribute('yLabel') = yLabel
-        this.getAttribute('data') = data
-    }
+    constructor (){
+        super();
 
+        const shadow = this.attachShadow({mode: 'open'});
+
+        const height = this.getAttribute('height');
+        const width = this.getAttribute('width');
+        const type = this.getAttribute('type');
+        const background = this.getAttribute('background');
+        const color1 = this.getAttribute('color1');
+        const color2 = this.getAttribute('color2');
+        const xLabel = this.getAttribute('xLabel');
+        const yLabel = this.getAttribute('yLabel');
+        const data = this.getAttribute('data');
+
+        console.log(yLabel)
+    }
 }
 
 customElements.define("graphJS", graphJS);

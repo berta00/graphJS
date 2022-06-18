@@ -10,17 +10,17 @@
 > <br>
 >You need to copy the repo in your project directory                 <br>
 >and add this script to the html body:                               <br>
->```
->script src="graphJS/src/graphJS.js"></script>
->```
+> ```
+> script src="graphJS/src/graphJS.js"></script>
+> ```
 > <br>
 >Your project directory shoud look like these:                       <br>
 > ```
->Project direcotry                  <br>
->    ├── graphJS-repo               <br>
->    │                              <br>
->    ├── index.html                 <br>
->    └── all your project things... <br>
+> Project direcotry                  <br>
+>     ├── graphJS-repo               <br>
+>     │                              <br>
+>     ├── index.html                 <br>
+>     └── all your project things... <br>
 > ```
 >If it doesn't look like that you can just change                    <br>
 >the script src path, the important is to initialize                 <br>
@@ -30,6 +30,7 @@
 > <br>
 >With the "<graphJS>" html element you can add a graph               <br>
 >Here you have all the attribute you must use:                       <br>
+>                                                                    <br>
 >- height:     set the height [px, %]                                <br>
 >- width:      set the width [px, %]                                 <br>
 >- type:       there are some type of graph you can choose           <br>
