@@ -11,9 +11,17 @@ body {
     align-items: center;
     position: absolute;
     justify-content: center;
+
+    flex-direction: column;
 }
 .center {
     display: flex;
     height: 200px;
     width: 500px;
+}
+.center2 {
+    display: flex;
+    height: 200px;
+    width: 500px;
+    margin-top: 50px;
 }
