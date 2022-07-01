@@ -53,8 +53,8 @@ body {
 .bar {
     position: relative;
     width: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     background-color: transparent;
 
 }
@@ -63,4 +63,10 @@ body {
     bottom: 0;
     background-color: red;
     width: 100%;
+}
+.group {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
 }
