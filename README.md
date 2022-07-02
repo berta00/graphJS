@@ -18,9 +18,14 @@ After the installation you are ready to create your first graph! <br>
 With ```<graph-js></graph>``` you can add a new graph, <br>
 then you can setup your graph with the following attributes:
 - ```data=""``` [array]: data set the data of the graph
+- ```barLabel=""``` [array]: bar label set the x axys label
+- ```barLabelColor=""``` [hex]: bar label color set the color of x axys label
+- ```barLabelFont=""``` [font]: bar label font set the font of x axys label (it need to be imported in css or html)
 - ```barBorderRadius=""```[n + unit]: bar border radius set the top left and top right border radius of bars
+- ```barBackground=""```[hex]: bar background set the the color of the bar
 - ```barMargin=""``` [n + unit]: bar margin set the left and right margin of bars
 - ```groupMargin=""``` [n + unit]: group margin set the left and right margin of a group of bars
+- ```axysBackground=""``` [hex]: axys background set the background color of the axys
 
 <br>
 
