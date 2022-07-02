@@ -1,6 +1,6 @@
 # graphJS
 
-### graph javascript library
+### A simple and usefull graph library in javascript
 
 <br>
 
