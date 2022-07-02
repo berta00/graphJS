@@ -10,7 +10,30 @@ class graphJS extends HTMLElement {
     constructor (){
         super();
 
+        // display the banner
+        if(window.nGraph == 0){
+            console.log(`
+Graph-JS v1.0.0 is active!
+            `)
+        }
+
+        // set default variable
+        var barMargin = "5px";
+        var barBorderRadius = "0px";
+        var groupMargin = "10px";
+
+        // get variable from html
         var data = this.getAttribute('data');
+
+        if(this.getAttribute('barMargin') != null){
+            barMargin = this.getAttribute('barMargin');
+        }
+        if(this.getAttribute('barBorderRadius') != null){
+            barBorderRadius = this.getAttribute('barBorderRadius');
+        }
+        if(this.getAttribute('groupMargin') != null){
+            groupMargin = this.getAttribute('groupMargin');
+        }
 
         // create the main div
         this.textContent = "";
@@ -30,19 +53,19 @@ class graphJS extends HTMLElement {
         this.style.flexDirection = "row";
         // get info about data and create bars
         for(var a = 0; a < eval(data).length; a++){
-            console.log(window.nBar)
             // single bar
             if(typeof eval(data)[a] === "number"){
-                console.log("sesso1")
                 // create bar
                 document.querySelector(".graph"+window.nGraph).innerHTML = document.querySelector(".graph"+window.nGraph).innerHTML + "<div class='bar"+window.nBar+"'></div>";
                 eval('document.querySelector(".bar'+window.nBar+'").style.position = "relative";');
                 eval('document.querySelector(".bar'+window.nBar+'").style.width = "40px";');
-                eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "5px";');
-                eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "5px";');
+                eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "'+barMargin+'";');
+                eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "'+barMargin+'";');
                 eval('document.querySelector(".bar'+window.nBar+'").style.backgroundColor = "transparent";');
                 // create data bar
                 document.querySelector(".bar"+window.nBar).innerHTML = "<div class='dataBar"+window.nBar+"'></div>"
+                eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopLeftRadius = "'+barBorderRadius+'";');
+                eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopRightRadius = "'+barBorderRadius+'";');
                 eval('document.querySelector(".dataBar'+window.nBar+'").style.position = "absolute";');
                 eval('document.querySelector(".dataBar'+window.nBar+'").style.bottom = "0";');
                 eval('document.querySelector(".dataBar'+window.nBar+'").style.backgroundColor = "red";');
@@ -54,11 +77,10 @@ class graphJS extends HTMLElement {
             }
             // group of bars
             else if(typeof eval(data)[a] === "object"){
-                console.log("sesso2")
                 // create div group
                 document.querySelector(".graph"+window.nGraph).innerHTML = document.querySelector(".graph"+window.nGraph).innerHTML + "<div class='group"+window.nGroup+"'></div>";
-                eval('document.querySelector(".group'+window.nGroup+'").style.paddingLeft = "10px";');
-                eval('document.querySelector(".group'+window.nGroup+'").style.paddingRight = "10px";');
+                eval('document.querySelector(".group'+window.nGroup+'").style.marginLeft = "'+groupMargin+'";');
+                eval('document.querySelector(".group'+window.nGroup+'").style.marginRight = "'+groupMargin+'";');
                 eval('document.querySelector(".group'+window.nGroup+'").style.display = "flex";');
                 eval('document.querySelector(".group'+window.nGroup+'").style.flexDirection = "row";');
                 for(let b = 0; b < eval(data)[a].length; b++){
@@ -66,11 +88,13 @@ class graphJS extends HTMLElement {
                     document.querySelector(".group"+window.nGroup).innerHTML = document.querySelector(".group"+window.nGroup).innerHTML + "<div class='bar"+window.nBar+"'></div>";
                     eval('document.querySelector(".bar'+window.nBar+'").style.position = "relative";');
                     eval('document.querySelector(".bar'+window.nBar+'").style.width = "40px";');
-                    eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "5px";');
-                    eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "5px";');
+                    eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "'+barMargin+'";');
+                    eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "'+barMargin+'";');
                     eval('document.querySelector(".bar'+window.nBar+'").style.backgroundColor = "transparent";');
                     // create data bar
                     document.querySelector(".bar"+window.nBar).innerHTML = document.querySelector(".bar"+window.nBar).innerHTML + "<div class='dataBar"+window.nBar+"'></div>";
+                    eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopLeftRadius = "'+barBorderRadius+'";');
+                    eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopRightRadius = "'+barBorderRadius+'";');
                     eval('document.querySelector(".dataBar'+window.nBar+'").style.position = "absolute";');
                     eval('document.querySelector(".dataBar'+window.nBar+'").style.bottom = "0";');
                     eval('document.querySelector(".dataBar'+window.nBar+'").style.backgroundColor = "red";');
@@ -80,9 +104,10 @@ class graphJS extends HTMLElement {
 
                     window.nBar++
                 }
+                window.nGroup++
             }
             else {
-                alert('graphJS: wrong datatype in data section')
+                console.error('graphJS: wrong datatype in data variable')
             }
         }
 
