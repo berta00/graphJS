@@ -37,7 +37,7 @@ body {
     height: 200px;
     width: 500px;
 }
-.data {
+.graph {
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 10px;
@@ -58,11 +58,19 @@ body {
     background-color: transparent;
 
 }
-.bar div {
+.data {
     position: absolute;
     bottom: 0;
     background-color: red;
     width: 100%;
+}
+.label {
+    color: white;
+    font-family: sans-serif;
+    position: absolute;
+    bottom: -20px;
+    transform-origin: right;
+    transform: translate(calc(-40px/2), calc(10px/2)) rotate(-45deg);
 }
 .group {
     padding-left: 10px;

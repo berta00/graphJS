@@ -4,17 +4,20 @@
         <link rel="stylesheet" href="stile/stile.css">
     </head>
     <body>
-        <div class="center">
+        <div class="center" alt="default">
             <graph-js
                 data="[200, [150, 130, 200], 190, 120, 160]"
             ></graph-js>
         </div>
-        <div class="center2">
+        <div class="center2" alt="custom">
             <graph-js
                 data="[120, [140, 100], 140, 100, 160, 220, 180]"
                 barMargin="4px"
-                groupMargin="8px"
                 barBorderRadius="10px"
+                barBackground="#d019d3"
+                groupMargin="8px"
+                axysBackground="#2219d3"
+                barLabel="['Bar 1', 'Suum', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5', 'Bar 6', 'Bar 7']"
             ></graph-js>
         </div>
 
