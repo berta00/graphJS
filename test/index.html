@@ -2,6 +2,9 @@
 <html lang="ita">
     <head>
         <link rel="stylesheet" href="stile/stile.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,500&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="center" alt="default">
@@ -11,15 +14,19 @@
         </div>
         <div class="center2" alt="custom">
             <graph-js
+                graphType="barGraph"
                 data="[120, [140, 100], 140, 100, 160, 220, 180]"
-                barMargin="4px"
+                barLabel="['Bar 1', 'Suum', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5', 'Bar 6', 'Bar 7']"
+                barLabelColor="#dca8f4"
+                barLabelFont="Roboto"
                 barBorderRadius="10px"
                 barBackground="#d019d3"
+                barMargin="4px"
                 groupMargin="8px"
                 axysBackground="#2219d3"
-                barLabel="['Bar 1', 'Suum', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5', 'Bar 6', 'Bar 7']"
             ></graph-js>
         </div>
+        <graph-js graphType="lineGraph"></graph-js>
 
         <script src="../src/graphJS.js"></script>
     </body>
