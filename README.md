@@ -33,10 +33,16 @@ then you can setup your graph with the following attributes:
 
 ```
 <graph-js
+    graphType="barGraph"
     data="[120, [140, 100], 140, 100, 160, 220, 180]"
+    barLabel="['Bar 1', 'Suum', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5', 'Bar 6', 'Bar 7']"
+    barLabelColor="#dca8f4"
+    barLabelFont="Roboto"
+    barBorderRadius="10px"
+    barBackground="#d019d3"
     barMargin="4px"
     groupMargin="8px"
-    barBorderRadius="10px"
+    axysBackground="#2219d3"
 ></graph-js>
 ```
 ```
