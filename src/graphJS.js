@@ -7,7 +7,7 @@ var nGroup ;
 window.nGroup = 0;
 
 class graphJS extends HTMLElement {
-    constructor (){
+    constructor(){
         super();
 
         // display the banner
@@ -96,7 +96,7 @@ Graph-JS v1.0 is active!
                         eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "'+barMargin+'";');
                         eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "'+barMargin+'";');
                         eval('document.querySelector(".bar'+window.nBar+'").style.backgroundColor = "transparent";');
-                        // create data bar and label
+                        // create data bar
                         document.querySelector(".bar"+window.nBar).innerHTML = "<div class='dataBar"+window.nBar+"'></div> <div class='barLabel"+window.nBar+"'>"+currentBarLabel+"</div>"
                         eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopLeftRadius = "'+barBorderRadius+'";');
                         eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopRightRadius = "'+barBorderRadius+'";');
@@ -106,13 +106,13 @@ Graph-JS v1.0 is active!
                         eval('document.querySelector(".dataBar'+window.nBar+'").style.width = "100%";');
                         // set data bar height
                         eval('document.querySelector(".dataBar'+window.nBar+'").style.height = "'+eval(data)[a]+'px";');
-
+                        // create bar label
                         eval('document.querySelector(".barLabel'+window.nBar+'").style.color = "'+barLabelColor+'";');
                         eval('document.querySelector(".barLabel'+window.nBar+'").style.fontFamily = "'+barLabelFont+'";');
                         eval('document.querySelector(".barLabel'+window.nBar+'").style.position = "absolute";');
                         eval('document.querySelector(".barLabel'+window.nBar+'").style.bottom = "-20px";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.transformOrigin = "right";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.transform = " rotate(-45deg)";');
+                        eval('document.querySelector(".barLabel'+window.nBar+'").style.transformOrigin = "right bottom";');
+                        eval('document.querySelector(".barLabel'+window.nBar+'").style.transform = "rotate(-45deg)";');
 
                         window.nBar++
                     }
@@ -140,7 +140,7 @@ Graph-JS v1.0 is active!
                             eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "'+barMargin+'";');
                             eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "'+barMargin+'";');
                             eval('document.querySelector(".bar'+window.nBar+'").style.backgroundColor = "transparent";');
-                            // create data bar and label
+                            // create data bar
                             document.querySelector(".bar"+window.nBar).innerHTML = document.querySelector(".bar"+window.nBar).innerHTML + "<div class='dataBar"+window.nBar+"'></div> <div class='barLabel"+window.nBar+"'>"+currentBarLabel+"</div>";
                             eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopLeftRadius = "'+barBorderRadius+'";');
                             eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopRightRadius = "'+barBorderRadius+'";');
@@ -150,13 +150,13 @@ Graph-JS v1.0 is active!
                             eval('document.querySelector(".dataBar'+window.nBar+'").style.width = "100%";');
                             // set data bar height
                             eval('document.querySelector(".dataBar'+window.nBar+'").style.height = "'+eval(data)[a][b]+'px";');
-
+                            // create bar label
                             eval('document.querySelector(".barLabel'+window.nBar+'").style.color = "'+barLabelColor+'";');
                             eval('document.querySelector(".barLabel'+window.nBar+'").style.fontFamily = "'+barLabelFont+'";');
                             eval('document.querySelector(".barLabel'+window.nBar+'").style.position = "absolute";');
                             eval('document.querySelector(".barLabel'+window.nBar+'").style.bottom = "-20px";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.transformOrigin = "right";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.transform = " rotate(-45deg)";');
+                            eval('document.querySelector(".barLabel'+window.nBar+'").style.transformOrigin = "right bottom";');
+                            eval('document.querySelector(".barLabel'+window.nBar+'").style.transform = "rotate(-45deg)";');
 
                             window.nBar++
                         }
