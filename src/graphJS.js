@@ -192,7 +192,7 @@ Graph-JS v1.0 is active!
                 this.style.flexDirection = "row";
 
                 for(var pointArr = 0; eval(data).lenght > pointArr; pointArr++){
-                    
+                    console.log(data[pointArr][0])
                 }
 
                 window.nGraph++
