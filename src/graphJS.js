@@ -189,7 +189,27 @@ class graphJS extends HTMLElement {
                 window.nGraph++
 
             case "lineGraph":
-                console.log("hi");
+                // create the main div
+                this.textContent = "";
+                this.className = "graph"+window.nGraph;
+                this.style.height = "calc(100% - 15px)";
+                this.style.width = "calc(100% - 15px)";
+                this.style.paddingLeft = "5px";
+                this.style.paddingRight = "5px";
+                this.style.paddingTop = "10px";
+                this.style.position = "relative";
+                this.style.borderTop = "0";
+                this.style.borderRight = "0";
+                this.style.borderBottom = "solid "+axysBackground+" 4px";
+                this.style.borderLeft = "solid "+axysBackground+" 4px";
+                this.style.background = "transparent";
+                this.style.display = "flex";
+                this.style.flexDirection = "row";
+
+                for(var pointArr = 0; eval(data).lenght > pointArr; pointArr++){
+                    console.log(data[pointArr][0])
+                }
+
                 window.nGraph++
         }
     }
