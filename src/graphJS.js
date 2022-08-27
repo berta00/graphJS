@@ -3,19 +3,21 @@ window.nGraph = 0;
 
 var nBar;
 window.nBar = 0;
-var nGroup ;
+var nGroup;
 window.nGroup = 0;
+
+// display the banner
+console.log(`
+Graph-JS v1.0 is active!
+`);
 
 class graphJS extends HTMLElement {
     constructor(){
         super();
 
-        // display the banner
-        if(window.nGraph == 0){
-            console.log(`
-Graph-JS v1.0 is active!
-            `)
-        }
+        // naming some variable
+        var xGraphAxis;
+        var yGraphAxis;
 
         // set default variable
         var graphType = "barGraph";
@@ -67,7 +69,7 @@ Graph-JS v1.0 is active!
             case "barGraph":
                 // create the main div
                 this.textContent = "";
-                this.className = "graph"+window.nGraph;
+                this.className = "graph" + window.nGraph;
                 this.style.height = "calc(100% - 15px)";
                 this.style.width = "calc(100% - 15px)";
                 this.style.paddingLeft = "5px";
@@ -76,11 +78,17 @@ Graph-JS v1.0 is active!
                 this.style.position = "relative";
                 this.style.borderTop = "0";
                 this.style.borderRight = "0";
-                this.style.borderBottom = "solid "+axysBackground+" 4px";
-                this.style.borderLeft = "solid "+axysBackground+" 4px";
                 this.style.background = "transparent";
                 this.style.display = "flex";
                 this.style.flexDirection = "row";
+                // create the x axis
+                //this.innerHTML += "<div class='xGraphAxis" + window.nBar + "'></div>";
+                //xGraphAxis = eval("document.querySelector('xGraphAxis" + window.nGraph + "');");
+                //xGraphAxis.style.position = 'absolute';
+                // create the y axis
+                //this.innerHTML += "<div class='yGraphAxis" + window.nGraph + "'>"
+                //yGraphAxis = eval("document.querySelector('yGraphAxis" + window.nGraph + "');");
+                //yGraphAxis.style.position = 'absolute';
                 // get info about data and create bars
                 for(var a = 0; a < eval(data).length; a++){
                     // single bar
@@ -88,93 +96,100 @@ Graph-JS v1.0 is active!
                         // get bar label
                         var currentBarLabel = " "
                         if(eval(barLabel)[0] == null){
-                            eval(barLabel).push(null)
+                            eval(barLabel).push(null);
                         }
                         if(eval(barLabel)[a] != null){
-                            currentBarLabel = eval(barLabel)[a]
+                            currentBarLabel = eval(barLabel)[a];
                         }
                         // create bar
-                        document.querySelector(".graph"+window.nGraph).innerHTML = document.querySelector(".graph"+window.nGraph).innerHTML + "<div class='bar"+window.nBar+"'></div>";
-                        eval('document.querySelector(".bar'+window.nBar+'").style.position = "relative";');
-                        eval('document.querySelector(".bar'+window.nBar+'").style.width = "'+barWidth+'";');
-                        eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "'+barMargin+'";');
-                        eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "'+barMargin+'";');
-                        eval('document.querySelector(".bar'+window.nBar+'").style.backgroundColor = "transparent";');
+                        this.innerHTML += "<div class='bar" + window.nBar + "'></div>";
+                        var currentBar = document.querySelector(".bar" + window.nBar)
+                        currentBar.style.position = "relative";
+                        currentBar.style.width = barWidth;
+                        currentBar.style.marginLeft = barMargin;
+                        currentBar.style.marginRight = barMargin;
+                        currentBar.style.backgroundColor = "transparent";
                         // create data bar
-                        document.querySelector(".bar"+window.nBar).innerHTML = "<div class='dataBar"+window.nBar+"'></div> <div class='barLabel"+window.nBar+"'>"+currentBarLabel+"</div>"
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopLeftRadius = "'+barBorderRadius+'";');
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopRightRadius = "'+barBorderRadius+'";');
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.position = "absolute";');
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.bottom = "0";');
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.backgroundColor = "'+barBackground+'";');
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.width = "100%";');
+                        currentBar.innerHTML = "<div class='dataBar" + window.nBar + "'></div> <div class='barLabel" + window.nBar + "'>" + currentBarLabel + "</div>"
+                        var currentDataBar = document.querySelector(".dataBar" + window.nBar)
+                        currentDataBar.style.borderTopLeftRadius = barBorderRadius;
+                        currentDataBar.style.borderTopRightRadius = barBorderRadius;
+                        currentDataBar.style.position = "absolute";
+                        currentDataBar.style.bottom = "0";
+                        currentDataBar.style.backgroundColor = barBackground;
+                        currentDataBar.style.width = "100%";
                         // set data bar height
-                        eval('document.querySelector(".dataBar'+window.nBar+'").style.height = "'+eval(data)[a]+'px";');
+                        currentDataBar.style.height = eval(data)[a] + "px";
                         // create bar label
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.color = "'+barLabelColor+'";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.fontFamily = "'+barLabelFont+'";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.position = "absolute";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.bottom = "-20px";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.transformOrigin = "right bottom";');
-                        eval('document.querySelector(".barLabel'+window.nBar+'").style.transform = "rotate(-45deg)";');
+                        var currentBarLabel = document.querySelector(".barLabel" + window.nBar)
+                        currentBarLabel.style.color = barLabelColor;
+                        currentBarLabel.style.fontFamily = barLabelFont;
+                        currentBarLabel.style.position = "absolute";
+                        currentBarLabel.style.bottom = "-20px";
+                        currentBarLabel.style.transformOrigin = "right bottom";
+                        currentBarLabel.style.transform = "rotate(-45deg)";
 
                         window.nBar++
                     }
                     // group of bars
                     else if(typeof eval(data)[a] === "object"){
                         // create div group
-                        document.querySelector(".graph"+window.nGraph).innerHTML = document.querySelector(".graph"+window.nGraph).innerHTML + "<div class='group"+window.nGroup+"'></div>";
-                        eval('document.querySelector(".group'+window.nGroup+'").style.marginLeft = "'+groupMargin+'";');
-                        eval('document.querySelector(".group'+window.nGroup+'").style.marginRight = "'+groupMargin+'";');
-                        eval('document.querySelector(".group'+window.nGroup+'").style.display = "flex";');
-                        eval('document.querySelector(".group'+window.nGroup+'").style.flexDirection = "row";');
+                        this.innerHTML += "<div class='group" + window.nGroup + "'></div>";
+                        var currentGroup = document.querySelector(".group" + window.nGroup);
+                        currentGroup.style.marginLeft = groupMargin;
+                        currentGroup.style.marginRight = groupMargin;
+                        currentGroup.style.display = "flex";
+                        currentGroup.style.flexDirection = "row";
                         for(let b = 0; b < eval(data)[a].length; b++){
                             // get bar label
-                            var currentBarLabel = " "
+                            var currentBarLabelText = " "
                             if(eval(barLabel)[0] == null){
-                                eval(barLabel).push(null)
+                                eval(barLabel).push(null);
                             }
                             if(eval(barLabel)[a] != null){
-                                currentBarLabel = eval(barLabel)[a+b]
+                                currentBarLabelText = eval(barLabel)[a+b];
                             }
                             // create bar
-                            document.querySelector(".group"+window.nGroup).innerHTML = document.querySelector(".group"+window.nGroup).innerHTML + "<div class='bar"+window.nBar+"'></div>";
-                            eval('document.querySelector(".bar'+window.nBar+'").style.position = "relative";');
-                            eval('document.querySelector(".bar'+window.nBar+'").style.width = "'+barWidth+'";');
-                            eval('document.querySelector(".bar'+window.nBar+'").style.marginLeft = "'+barMargin+'";');
-                            eval('document.querySelector(".bar'+window.nBar+'").style.marginRight = "'+barMargin+'";');
-                            eval('document.querySelector(".bar'+window.nBar+'").style.backgroundColor = "transparent";');
+                            currentGroup.innerHTML += "<div class='bar" + window.nBar + "'></div>";
+                            var currentBar = document.querySelector(".bar" + window.nBar);
+                            currentBar.style.position = "relative";
+                            currentBar.style.width = barWidth;
+                            currentBar.style.marginLeft = barMargin;
+                            currentBar.style.marginRight = barMargin;
+                            currentBar.style.backgroundColor = "transparent";
                             // create data bar
-                            document.querySelector(".bar"+window.nBar).innerHTML = document.querySelector(".bar"+window.nBar).innerHTML + "<div class='dataBar"+window.nBar+"'></div> <div class='barLabel"+window.nBar+"'>"+currentBarLabel+"</div>";
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopLeftRadius = "'+barBorderRadius+'";');
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.borderTopRightRadius = "'+barBorderRadius+'";');
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.position = "absolute";');
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.bottom = "0";');
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.backgroundColor = "'+barBackground+'";');
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.width = "100%";');
+                            currentBar.innerHTML += "<div class='dataBar" + window.nBar + "'></div> <div class='barLabel" + window.nBar + "'>" + currentBarLabelText + "</div>";
+                            var currentDataBar = document.querySelector(".dataBar" + window.nBar)
+                            currentDataBar.style.borderTopLeftRadius = barBorderRadius;
+                            currentDataBar.style.borderTopRightRadius = barBorderRadius;
+                            currentDataBar.style.position = "absolute";
+                            currentDataBar.style.bottom = "0";
+                            currentDataBar.style.backgroundColor = barBackground;
+                            currentDataBar.style.width = "100%";
                             // set data bar height
-                            eval('document.querySelector(".dataBar'+window.nBar+'").style.height = "'+eval(data)[a][b]+'px";');
-                            // create bar label
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.color = "'+barLabelColor+'";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.fontFamily = "'+barLabelFont+'";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.position = "absolute";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.bottom = "-20px";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.transformOrigin = "right bottom";');
-                            eval('document.querySelector(".barLabel'+window.nBar+'").style.transform = "rotate(-45deg)";');
+                            currentDataBar.style.height = eval(data)[a][b] + "px";
+                            // style bar label
+                            var currentBarLabel = document.querySelector(".barLabel" + window.nBar);
+                            currentBarLabel.style.color = barLabelColor;
+                            currentBarLabel.style.fontFamily = barLabelFont;
+                            currentBarLabel.style.position = "absolute";
+                            currentBarLabel.style.bottom = "-20px";
+                            currentBarLabel.style.transformOrigin = "right bottom";
+                            currentBarLabel.style.transform = "rotate(-45deg)";
 
                             window.nBar++
                         }
                         window.nGroup++
                     }
                     else {
-                        console.error('graphJS: wrong datatype in data variable')
+                        console.error('graphJS: wrong datatype in data variable');
                     }
                 }
 
                 window.nGraph++
 
             case "lineGraph":
-                console.log("hi")
+                console.log("hi");
                 window.nGraph++
         }
     }
