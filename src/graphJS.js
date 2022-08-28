@@ -15,10 +15,6 @@ class graphJS extends HTMLElement {
     constructor(){
         super();
 
-        // naming some variable
-        var xGraphAxis;
-        var yGraphAxis;
-
         // set default variable
         var graphType = "barGraph";
         var barWidth = "50px";
@@ -30,6 +26,7 @@ class graphJS extends HTMLElement {
         var barLabel = [];
         var groupMargin = "10px";
         var axysBackground = "#ffffff";
+        var axysWidth = "10px";
 
         // get variable from html
         var data = this.getAttribute('data');
@@ -64,6 +61,9 @@ class graphJS extends HTMLElement {
         if(this.getAttribute('axysBackground') != null){
             axysBackground = this.getAttribute('axysBackground');
         }
+        if(this.getAttribute('axysWidth') != null){
+            axysWidth = this.getAttribute('axysWidth');
+        }
 
         switch(graphType){
             case "barGraph":
@@ -82,13 +82,23 @@ class graphJS extends HTMLElement {
                 this.style.display = "flex";
                 this.style.flexDirection = "row";
                 // create the x axis
-                //this.innerHTML += "<div class='xGraphAxis" + window.nBar + "'></div>";
-                //xGraphAxis = eval("document.querySelector('xGraphAxis" + window.nGraph + "');");
-                //xGraphAxis.style.position = 'absolute';
+                this.innerHTML += "<div class='xGraphAxis" + window.nGraph + "'></div>";
+                var yGraphAxis = document.querySelector('.xGraphAxis' + window.nGraph);
+                yGraphAxis.style.position = 'absolute';
+                yGraphAxis.style.height = '100%';
+                yGraphAxis.style.width = axysWidth;
+                yGraphAxis.style.background = axysBackground;
+                yGraphAxis.style.top = '0';
+                yGraphAxis.style.left = '-'+ axysWidth;
                 // create the y axis
-                //this.innerHTML += "<div class='yGraphAxis" + window.nGraph + "'>"
-                //yGraphAxis = eval("document.querySelector('yGraphAxis" + window.nGraph + "');");
-                //yGraphAxis.style.position = 'absolute';
+                this.innerHTML += "<div class='yGraphAxis" + window.nGraph + "'></div>";
+                var xGraphAxis = document.querySelector('.yGraphAxis' + window.nGraph);
+                xGraphAxis.style.position = 'absolute';
+                xGraphAxis.style.width = '100%';
+                xGraphAxis.style.height = axysWidth;
+                xGraphAxis.style.background = axysBackground;
+                xGraphAxis.style.bottom = '-'+ axysWidth;
+                xGraphAxis.style.left = '-'+ axysWidth;
                 // get info about data and create bars
                 for(var a = 0; a < eval(data).length; a++){
                     // single bar
@@ -103,7 +113,7 @@ class graphJS extends HTMLElement {
                         }
                         // create bar
                         this.innerHTML += "<div class='bar" + window.nBar + "'></div>";
-                        var currentBar = document.querySelector(".bar" + window.nBar)
+                        var currentBar = document.querySelector(".bar" + window.nBar);
                         currentBar.style.position = "relative";
                         currentBar.style.width = barWidth;
                         currentBar.style.marginLeft = barMargin;
@@ -111,7 +121,7 @@ class graphJS extends HTMLElement {
                         currentBar.style.backgroundColor = "transparent";
                         // create data bar
                         currentBar.innerHTML = "<div class='dataBar" + window.nBar + "'></div> <div class='barLabel" + window.nBar + "'>" + currentBarLabel + "</div>"
-                        var currentDataBar = document.querySelector(".dataBar" + window.nBar)
+                        var currentDataBar = document.querySelector(".dataBar" + window.nBar);
                         currentDataBar.style.borderTopLeftRadius = barBorderRadius;
                         currentDataBar.style.borderTopRightRadius = barBorderRadius;
                         currentDataBar.style.position = "absolute";
@@ -121,7 +131,7 @@ class graphJS extends HTMLElement {
                         // set data bar height
                         currentDataBar.style.height = eval(data)[a] + "px";
                         // create bar label
-                        var currentBarLabel = document.querySelector(".barLabel" + window.nBar)
+                        var currentBarLabel = document.querySelector(".barLabel" + window.nBar);
                         currentBarLabel.style.color = barLabelColor;
                         currentBarLabel.style.fontFamily = barLabelFont;
                         currentBarLabel.style.position = "absolute";
@@ -159,7 +169,7 @@ class graphJS extends HTMLElement {
                             currentBar.style.backgroundColor = "transparent";
                             // create data bar
                             currentBar.innerHTML += "<div class='dataBar" + window.nBar + "'></div> <div class='barLabel" + window.nBar + "'>" + currentBarLabelText + "</div>";
-                            var currentDataBar = document.querySelector(".dataBar" + window.nBar)
+                            var currentDataBar = document.querySelector(".dataBar" + window.nBar);
                             currentDataBar.style.borderTopLeftRadius = barBorderRadius;
                             currentDataBar.style.borderTopRightRadius = barBorderRadius;
                             currentDataBar.style.position = "absolute";
@@ -190,25 +200,25 @@ class graphJS extends HTMLElement {
 
             case "lineGraph":
                 // create the main div
-                this.textContent = "";
-                this.className = "graph"+window.nGraph;
-                this.style.height = "calc(100% - 15px)";
-                this.style.width = "calc(100% - 15px)";
-                this.style.paddingLeft = "5px";
-                this.style.paddingRight = "5px";
-                this.style.paddingTop = "10px";
-                this.style.position = "relative";
-                this.style.borderTop = "0";
-                this.style.borderRight = "0";
-                this.style.borderBottom = "solid "+axysBackground+" 4px";
-                this.style.borderLeft = "solid "+axysBackground+" 4px";
-                this.style.background = "transparent";
-                this.style.display = "flex";
-                this.style.flexDirection = "row";
+                //this.textContent = "";
+                //this.className = "graph"+window.nGraph;
+                //this.style.height = "calc(100% - 15px)";
+                //this.style.width = "calc(100% - 15px)";
+                //this.style.paddingLeft = "5px";
+                //this.style.paddingRight = "5px";
+                //this.style.paddingTop = "10px";
+                //this.style.position = "relative";
+                //this.style.borderTop = "0";
+                //this.style.borderRight = "0";
+                //this.style.borderBottom = "solid "+axysBackground+" 4px";
+                //this.style.borderLeft = "solid "+axysBackground+" 4px";
+                //this.style.background = "transparent";
+                //this.style.display = "flex";
+                //this.style.flexDirection = "row";
 
-                for(var pointArr = 0; eval(data).lenght > pointArr; pointArr++){
-                    console.log(data[pointArr][0])
-                }
+                //for(var pointArr = 0; eval(data).lenght > pointArr; pointArr++){
+                //    console.log(data[pointArr][0])
+                //}
 
                 window.nGraph++
         }
