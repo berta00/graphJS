@@ -103,15 +103,16 @@ class graphJS extends HTMLElement {
                 xGraphAxis.style.bottom = '-'+ axysWidth;
                 xGraphAxis.style.left = '-'+ axysWidth;
                 for(let c = 0; c < eval(data).length; c++){
-                    if(typeof eval(data)[c] === "numeric"){
+                    if(typeof eval(data)[c] === "number"){
                         // get heighest value in data
                         if(heighestValue < eval(data)[c]){
                             heighestValue = eval(data)[c];
                         }
                     } else if(typeof eval(data)[c] === "object"){
-                        for(let d = 0; d < eval(data)[c].length; d++)
-                        if(heighestValue < eval(data)[c][d]){
-                            heighestValue = eval(data)[c][d];
+                        for(let d = 0; d < eval(data)[c].length; d++){
+                            if(heighestValue < eval(data)[c][d]){
+                                heighestValue = eval(data)[c][d];
+                            }
                         }
                     }
                 }
