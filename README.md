@@ -18,7 +18,7 @@ After the installation you are ready to create your first graph! <br>
 With ```<graph-js></graph>``` you can add a new graph, <br>
 then you can setup your graph with the following attributes:
 - ```graphType=""``` [string]: set the graph type (barGraph, lineGraph, cakeGraph)
-- ```data=""``` [array]: data set the data of the graph
+- ```data=""``` [array]: *data set the data of the graph
 - ```barLabel=""``` [array]: bar label set the x axys label
 - ```barLabelColor=""``` [hex]: bar label color set the color of x axys label
 - ```barLabelFont=""``` [font]: bar label font set the font of x axys label (it need to be imported in css or html)
@@ -27,6 +27,7 @@ then you can setup your graph with the following attributes:
 - ```barMargin=""``` [n + unit]: bar margin set the left and right margin of bars
 - ```groupMargin=""``` [n + unit]: group margin set the left and right margin of a group of bars
 - ```axysBackground=""``` [hex]: axys background set the background color of the axys
+- ```axysWidth=""``` [n + unit]: axis width set the axys thickness
 
 <br>
 
@@ -34,7 +35,10 @@ then you can setup your graph with the following attributes:
 
 You can create a bar graph setting the ```graphType=""``` attribute to ```barGraph```. <br>
 The data's attribute data type must be [ ][ ]int (exaple: [100,[80,20,60],120,80,110] - int are the height of the point). <br>
-Here an example of a bar graph: <br>
+The height of bars is setted according to the heighest bar, this is how it looks in the code: ```(barValue / heighestBarValue) * 100``` <br>
+Here an example of a bar graph: 
+
+<br>
 
 ```
 <graph-js
@@ -48,6 +52,7 @@ Here an example of a bar graph: <br>
     barMargin="5px"
     groupMargin="10px"
     axysBackground="#ffffff"
+    axysWidth="5px"
 ></graph-js>
 ```
 
