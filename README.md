@@ -2,6 +2,10 @@
 
 ### A simple and usefull graph library in javascript
 
+<img src="https://i.ytimg.com/vi/d21Kaok1zZw/maxresdefault.jpg" alt="graphJS :)" style="width:100%;height:320px;border-radius:100px;"/>
+
+##### What would the world be like without graph?
+
 <br>
 
 #### 1) Installation
