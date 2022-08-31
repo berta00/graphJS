@@ -11,9 +11,25 @@ console.log(`
 Graph-JS v1.0 is active!
 `);
 
+// some function
+function unitRemover(measure){
+    console.log(measure);
+    for(let stringIndex = 0; stringIndex < measure.lenght; stringIndex++){
+        console.log(measure[stringIndex]);
+    }
+}
+
+// main class
 class graphJS extends HTMLElement {
     constructor(){
         super();
+        // some variables declaration
+        let currentBar;
+        let currentDataBar;
+        let currentBarLabel;
+        let barHeight;
+        let currentGroup;
+        let yLabelDiv;
 
         // set default variable
         let graphType = "barGraph";
@@ -85,26 +101,35 @@ class graphJS extends HTMLElement {
                 this.style.flexDirection = "row";
                 let graphDiv = document.querySelector(".graph" + window.nGraph);
                 // create the x axis
-                this.innerHTML += "<div class='xGraphAxis" + window.nGraph + "'></div>";
-                let yGraphAxis = document.querySelector('.xGraphAxis' + window.nGraph);
+                this.innerHTML += "<div class='yGraphAxis" + window.nGraph + "'></div>";
+                let yGraphAxis = document.querySelector('.yGraphAxis' + window.nGraph);
                 yGraphAxis.style.position = 'absolute';
+                yGraphAxis.style.left = '-'+ axysWidth;
+                yGraphAxis.style.top = '0';
                 yGraphAxis.style.height = '100%';
                 yGraphAxis.style.width = axysWidth;
                 yGraphAxis.style.background = axysBackground;
-                yGraphAxis.style.top = '0';
-                yGraphAxis.style.left = '-'+ axysWidth;
+                unitRemover(yGraphAxis.style.left)
                 // create the y axis
-                this.innerHTML += "<div class='yGraphAxis" + window.nGraph + "'></div>";
-                let xGraphAxis = document.querySelector('.yGraphAxis' + window.nGraph);
+                this.innerHTML += "<div class='xGraphAxis" + window.nGraph + "'></div>";
+                let xGraphAxis = document.querySelector('.xGraphAxis' + window.nGraph);
                 xGraphAxis.style.position = 'absolute';
-                xGraphAxis.style.width = '100%';
+                xGraphAxis.style.left = '-'+ axysWidth;
+                xGraphAxis.style.bottom = '-'+ axysWidth;
+                xGraphAxis.style.width = (this.clientWidth + 100) + "px";
                 xGraphAxis.style.height = axysWidth;
                 xGraphAxis.style.background = axysBackground;
-                xGraphAxis.style.bottom = '-'+ axysWidth;
-                xGraphAxis.style.left = '-'+ axysWidth;
+                // create y label div
+                this.innerHTML += "<div class='yLabelDiv" + window.nGraph + "'></div>";
+                yLabelDiv = document.querySelector(".yLabelDiv" + window.nGraph);
+                yLabelDiv.style.position = "absolute";
+                yLabelDiv.style.height = (this.clientHeight + xGraphAxis.clientHeight*2) + "px";
+                yLabelDiv.style.width = (this.clientWidth + 40) + "px";
+                yLabelDiv.style.left = "-40px";
+
+                // get heighest value in data
                 for(let c = 0; c < eval(data).length; c++){
                     if(typeof eval(data)[c] === "number"){
-                        // get heighest value in data
                         if(heighestValue < eval(data)[c]){
                             heighestValue = eval(data)[c];
                         }
@@ -118,13 +143,6 @@ class graphJS extends HTMLElement {
                 }
                 // get info about data and create bars
                 for(let a = 0; a < eval(data).length; a++){
-                    // some variables
-                    let currentBar;
-                    let currentDataBar;
-                    let currentBarLabel;
-                    let barHeight;
-                    let currentGroup;
-
                     // single bar
                     if(typeof eval(data)[a] === "number"){
                         // get bar label
@@ -161,7 +179,7 @@ class graphJS extends HTMLElement {
                         currentBarLabel.style.transformOrigin = "right bottom";
                         currentBarLabel.style.transform = "rotate(-45deg)";
 
-                        // asign height and y label
+                        // asign height to databar
                         barHeight = (eval(data)[a] / heighestValue) * 100;
                         currentDataBar.style.height = barHeight + "%";
 
@@ -223,11 +241,6 @@ class graphJS extends HTMLElement {
                         console.error('graphJS: wrong datatype in data variable');
                     }
                 }
-
-                // values on y                   heighestValue
-                // get the numeric threshold
-
-                // asign height and y label
 
                 window.nGraph++
 
