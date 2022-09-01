@@ -11,11 +11,15 @@ console.log(`
 Graph-JS v1.0 is active!
 `);
 
-// some function
+// some functions
 function unitRemover(measure){
-    console.log(measure);
-    for(let stringIndex = 0; stringIndex < measure.lenght; stringIndex++){
-        console.log(measure[stringIndex]);
+    let finalData = "";
+    for(let stringIndex = 0; stringIndex < measure.length; stringIndex++){
+        if(isNaN(Number(measure[stringIndex])) == false || measure[stringIndex] == "-"){
+            finalData += measure[stringIndex];
+        } else{
+            return finalData
+        }
     }
 }
 
@@ -30,6 +34,10 @@ class graphJS extends HTMLElement {
         let barHeight;
         let currentGroup;
         let yLabelDiv;
+        let currentYLabel;
+        var heighestYlabel;
+        var nYlabel;
+        let spacingYlabel;
 
         // set default variable
         let graphType = "barGraph";
@@ -40,6 +48,7 @@ class graphJS extends HTMLElement {
         let barLabelColor = "#ffffff"
         let barLabelFont = "sans-serif"
         let barLabel = [];
+        let yLabelThreshold = 100;
         let groupMargin = "10px";
         let axysBackground = "#ffffff";
         let axysWidth = "10px";
@@ -62,14 +71,17 @@ class graphJS extends HTMLElement {
         if(this.getAttribute('barBackground') != null){
             barBackground = this.getAttribute('barBackground');
         }
-        if(this.getAttribute('barLabelColor') != null){
-            barLabelColor = this.getAttribute('barLabelColor');
+        if(this.getAttribute('xLabelColor') != null){
+            barLabelColor = this.getAttribute('xLabelColor');
         }
-        if(this.getAttribute('barLabelFont') != null){
-            barLabelFont = this.getAttribute('barLabelFont');
+        if(this.getAttribute('xLabelFont') != null){
+            barLabelFont = this.getAttribute('xLabelFont');
         }
-        if(this.getAttribute('barLabel') != null){
-            barLabel = this.getAttribute('barLabel');
+        if(this.getAttribute('xLabel') != null){
+            barLabel = this.getAttribute('xLabel');
+        }
+        if(this.getAttribute('yLabelThreshold') != null){
+            yLabelThreshold = Number(this.getAttribute('yLabelThreshold'));
         }
         if(this.getAttribute('groupMargin') != null){
             groupMargin = this.getAttribute('groupMargin');
@@ -109,23 +121,15 @@ class graphJS extends HTMLElement {
                 yGraphAxis.style.height = '100%';
                 yGraphAxis.style.width = axysWidth;
                 yGraphAxis.style.background = axysBackground;
-                unitRemover(yGraphAxis.style.left)
                 // create the y axis
                 this.innerHTML += "<div class='xGraphAxis" + window.nGraph + "'></div>";
                 let xGraphAxis = document.querySelector('.xGraphAxis' + window.nGraph);
                 xGraphAxis.style.position = 'absolute';
                 xGraphAxis.style.left = '-'+ axysWidth;
                 xGraphAxis.style.bottom = '-'+ axysWidth;
-                xGraphAxis.style.width = (this.clientWidth + 100) + "px";
+                xGraphAxis.style.width = (this.clientWidth + Number(unitRemover(axysWidth))) + "px";
                 xGraphAxis.style.height = axysWidth;
                 xGraphAxis.style.background = axysBackground;
-                // create y label div
-                this.innerHTML += "<div class='yLabelDiv" + window.nGraph + "'></div>";
-                yLabelDiv = document.querySelector(".yLabelDiv" + window.nGraph);
-                yLabelDiv.style.position = "absolute";
-                yLabelDiv.style.height = (this.clientHeight + xGraphAxis.clientHeight*2) + "px";
-                yLabelDiv.style.width = (this.clientWidth + 40) + "px";
-                yLabelDiv.style.left = "-40px";
 
                 // get heighest value in data
                 for(let c = 0; c < eval(data).length; c++){
@@ -141,6 +145,38 @@ class graphJS extends HTMLElement {
                         }
                     }
                 }
+
+                // create y label div
+                this.innerHTML += "<div class='yLabelDiv" + window.nGraph + "'></div>";
+                yLabelDiv = document.querySelector(".yLabelDiv" + window.nGraph);
+                yLabelDiv.style.overflow = "hidden";
+                yLabelDiv.style.position = "absolute";
+                yLabelDiv.style.height = this.clientHeight+ "px";
+                yLabelDiv.style.width = (this.clientWidth + 40) + "px";
+                yLabelDiv.style.left = "-40px";
+                yLabelDiv.style.top = 0;
+                yLabelDiv.style.display = "flex";
+                yLabelDiv.style.flexDirection = "column-reverse";
+                // get y label line number
+                for(let e = 0; e < heighestValue; e += 50){
+                    heighestYlabel = e;
+                    nYlabel ++;
+                }
+                // generate label spacing
+                spacingYlabel = (((this.clientHeight - Number(unitRemover(this.style.paddingTop))) / heighestValue) * yLabelThreshold);
+                // create y thresholds (100)
+                for(let f = yLabelThreshold; f < heighestValue + yLabelThreshold; f += yLabelThreshold){
+                    yLabelDiv.innerHTML += "<div class='labelDiv" + window.nGraph + "-" + f + "'></div>"
+                    currentYLabel = document.querySelector(".labelDiv" + window.nGraph + "-" + f);
+                    currentYLabel.style.position = "relative";
+                    currentYLabel.style.background = "black";
+                    currentYLabel.style.width = "calc(100% - 40px)";
+                    currentYLabel.style.minHeight = "1px";
+                    currentYLabel.style.height = "1px";
+                    currentYLabel.style.left = "40px";
+                    currentYLabel.style.marginBottom = spacingYlabel - 1 + "px";
+                }
+
                 // get info about data and create bars
                 for(let a = 0; a < eval(data).length; a++){
                     // single bar
