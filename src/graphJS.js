@@ -151,7 +151,6 @@ class graphJS extends HTMLElement {
                 // create y label div
                 this.innerHTML += "<div class='yLabelDiv" + window.nGraph + "'></div>";
                 yLabelDiv = document.querySelector(".yLabelDiv" + window.nGraph);
-                yLabelDiv.style.overflow = "hidden";
                 yLabelDiv.style.position = "absolute";
                 yLabelDiv.style.height = this.clientHeight + "px";
                 yLabelDiv.style.width = (this.clientWidth + 50) + "px";
@@ -167,9 +166,9 @@ class graphJS extends HTMLElement {
                 // generate label spacing
                 spacingYlabel = (((this.clientHeight - Number(unitRemover(this.style.paddingTop))) / heighestValue) * yLabelThreshold);
                 // create y thresholds
-                for(let f = yLabelThreshold; f < heighestValue + yLabelThreshold; f += yLabelThreshold){
+                for(let f = 0; f < heighestValue; f += yLabelThreshold){
                     // label div
-                    yLabelDiv.innerHTML += "<div class='labelDiv" + window.nGraph + "-" + f + "'><a class='labelText" + window.nGraph + "-" + f + "'>" + f + "</a><hr class='labelLine" + window.nGraph + "-" + f + "'></hr></div>";
+                    yLabelDiv.innerHTML += "<div class='labelDiv" + window.nGraph + "-" + f + "'><a class='labelText" + window.nGraph + "-" + f + "'>" + (f  + yLabelThreshold) + "</a><hr class='labelLine" + window.nGraph + "-" + f + "'></hr></div>";
                     currentYLabelDiv = document.querySelector(".labelDiv" + window.nGraph + "-" + f);
                     currentYLabelDiv.style.position = "relative";
                     currentYLabelDiv.style.width = "100%";
@@ -178,7 +177,12 @@ class graphJS extends HTMLElement {
                     currentYLabelDiv.style.display = "flex";
                     currentYLabelDiv.style.flexDirection = "row";
                     currentYLabelDiv.style.alignItems = "center";
-                    currentYLabelDiv.style.marginBottom = spacingYlabel - 10 + "px";
+                    // the first one must have different marginBottom
+                    if(f == 0){
+                        currentYLabelDiv.style.marginBottom = spacingYlabel - 10 + "px";
+                    } else {
+                        currentYLabelDiv.style.marginBottom = spacingYlabel - 20 + "px";
+                    }
                     // label text
                     currentYLabelText = document.querySelector(".labelText" + window.nGraph + "-" + f);
                     currentYLabelText.style.position = "relative";
@@ -186,7 +190,8 @@ class graphJS extends HTMLElement {
                     currentYLabelText.style.width = "50px";
                     currentYLabelText.style.height = "20px";
                     currentYLabelText.style.textAlign = "right";
-                    currentYLabelText.style.marginRight = axysWidth;
+                    currentYLabelText.style.marginRight = Number(unitRemover(axysWidth)) + 5 + "px";
+                    currentYLabelText.style.fontFamily = barLabelFont;
                     // label line
                     currentYLabelLine = document.querySelector(".labelLine" + window.nGraph + "-" + f);
                     currentYLabelLine.style.position = "relative";
