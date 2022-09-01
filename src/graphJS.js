@@ -34,7 +34,9 @@ class graphJS extends HTMLElement {
         let barHeight;
         let currentGroup;
         let yLabelDiv;
-        let currentYLabel;
+        let currentYLabelDiv;
+        let currentYLabelLine;
+        let currentYLabelText;
         var heighestYlabel;
         var nYlabel;
         let spacingYlabel;
@@ -151,9 +153,9 @@ class graphJS extends HTMLElement {
                 yLabelDiv = document.querySelector(".yLabelDiv" + window.nGraph);
                 yLabelDiv.style.overflow = "hidden";
                 yLabelDiv.style.position = "absolute";
-                yLabelDiv.style.height = this.clientHeight+ "px";
-                yLabelDiv.style.width = (this.clientWidth + 40) + "px";
-                yLabelDiv.style.left = "-40px";
+                yLabelDiv.style.height = this.clientHeight + "px";
+                yLabelDiv.style.width = (this.clientWidth + 50) + "px";
+                yLabelDiv.style.left = (-50 - Number(unitRemover(axysWidth))) + "px";
                 yLabelDiv.style.top = 0;
                 yLabelDiv.style.display = "flex";
                 yLabelDiv.style.flexDirection = "column-reverse";
@@ -164,17 +166,36 @@ class graphJS extends HTMLElement {
                 }
                 // generate label spacing
                 spacingYlabel = (((this.clientHeight - Number(unitRemover(this.style.paddingTop))) / heighestValue) * yLabelThreshold);
-                // create y thresholds (100)
+                // create y thresholds
                 for(let f = yLabelThreshold; f < heighestValue + yLabelThreshold; f += yLabelThreshold){
-                    yLabelDiv.innerHTML += "<div class='labelDiv" + window.nGraph + "-" + f + "'></div>"
-                    currentYLabel = document.querySelector(".labelDiv" + window.nGraph + "-" + f);
-                    currentYLabel.style.position = "relative";
-                    currentYLabel.style.background = "black";
-                    currentYLabel.style.width = "calc(100% - 40px)";
-                    currentYLabel.style.minHeight = "1px";
-                    currentYLabel.style.height = "1px";
-                    currentYLabel.style.left = "40px";
-                    currentYLabel.style.marginBottom = spacingYlabel - 1 + "px";
+                    // label div
+                    yLabelDiv.innerHTML += "<div class='labelDiv" + window.nGraph + "-" + f + "'><a class='labelText" + window.nGraph + "-" + f + "'>" + f + "</a><hr class='labelLine" + window.nGraph + "-" + f + "'></hr></div>";
+                    currentYLabelDiv = document.querySelector(".labelDiv" + window.nGraph + "-" + f);
+                    currentYLabelDiv.style.position = "relative";
+                    currentYLabelDiv.style.width = "100%";
+                    currentYLabelDiv.style.minHeight = "20px";
+                    currentYLabelDiv.style.height = "20px";
+                    currentYLabelDiv.style.display = "flex";
+                    currentYLabelDiv.style.flexDirection = "row";
+                    currentYLabelDiv.style.alignItems = "center";
+                    currentYLabelDiv.style.marginBottom = spacingYlabel - 10 + "px";
+                    // label text
+                    currentYLabelText = document.querySelector(".labelText" + window.nGraph + "-" + f);
+                    currentYLabelText.style.position = "relative";
+                    currentYLabelText.style.color = "white";
+                    currentYLabelText.style.width = "50px";
+                    currentYLabelText.style.height = "20px";
+                    currentYLabelText.style.textAlign = "right";
+                    currentYLabelText.style.marginRight = axysWidth;
+                    // label line
+                    currentYLabelLine = document.querySelector(".labelLine" + window.nGraph + "-" + f);
+                    currentYLabelLine.style.position = "relative";
+                    currentYLabelLine.style.background = "black";
+                    currentYLabelLine.style.border = "solid 0";
+                    currentYLabelLine.style.color = "white";
+                    currentYLabelLine.style.background = "black";
+                    currentYLabelLine.style.width = "calc(100% - " + axysWidth + ")";
+                    currentYLabelLine.style.height = "1px";
                 }
 
                 // get info about data and create bars
