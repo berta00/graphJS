@@ -23,9 +23,10 @@ With ```<graph-js></graph>``` you can add a new graph, <br>
 then you can setup your graph with the following attributes:
 - ```graphType=""``` [string]: set the graph type (barGraph, lineGraph, cakeGraph)
 - ```data=""``` [array]: *data set the data of the graph
-- ```barLabel=""``` [array]: bar label set the x axys label
-- ```barLabelColor=""``` [hex]: bar label color set the color of x axys label
-- ```barLabelFont=""``` [font]: bar label font set the font of x axys label (it need to be imported in css or html)
+- ```xLabel=""``` [array]: bar label set the x axys label
+- ```xLabelColor=""``` [hex]: bar label color set the color of x axys label
+- ```xLabelFont=""``` [font]: bar label font set the font of x axys label (it need to be imported in css or html)
+- ```yLabelThreshold=""``` [n]: set the y label threshold
 - ```barBorderRadius=""```[n + unit]: bar border radius set the top left and top right border radius of bars
 - ```barBackground=""```[hex]: bar background set the the color of the bar
 - ```barMargin=""``` [n + unit]: bar margin set the left and right margin of bars
@@ -47,15 +48,16 @@ Here an example of a bar graph:
 ```
 <graph-js
     graphType="barGraph"
-    data="[100, 160, [75, 120, 20], 150]"
-    barLabel="['Bar 1', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5', 'Bar 6']"
-    barLabelColor="#ffffff"
-    barLabelFont="sans-serif"
-    barBorderRadius="0px"
-    barBackground="##ff0000"
-    barMargin="5px"
-    groupMargin="10px"
-    axysBackground="#ffffff"
+    data="[300, [150, 100], 140, 150, 150, 400, 200]"
+    xLabel="['Bar 1', 'Sium', 'Bar 2', 'Bar 3', 'Bar 4', 'Bar 5', 'Bar 6', 'Bar 7']"
+    xLabelColor="#dca8f4"
+    xLabelFont="Roboto"
+    yLabelThreshold="50"
+    barBorderRadius="10px"
+    barBackground="#d019d3"
+    barMargin="4px"
+    groupMargin="8px"
+    axysBackground="#2219d3"
     axysWidth="5px"
 ></graph-js>
 ```
