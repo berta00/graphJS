@@ -62,7 +62,7 @@ Here an example of a bar graph:
 ></graph-js>
 ```
 
-<img src="https://github.com/s3rgi0s/graphJS/blob/main/img/1.png?raw=true" alt="bar graph" style="width:320px;"/>
+<img src="https://raw.githubusercontent.com/s3rgi0s/graphJS/main/img/1.png" alt="bar graph" style="width:320px;"/>
 
 <br>
 
